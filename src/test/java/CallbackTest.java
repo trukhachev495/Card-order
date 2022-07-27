@@ -11,7 +11,6 @@ public class CallbackTest {
 
     private WebDriver driver;
 
-
     @BeforeAll
     static void setUpAll(){
         System.setProperty("webdriver.chrome.driver","driver/win/chromedriver.exe");
@@ -28,16 +27,17 @@ public class CallbackTest {
         driver = null;
     }
 
+
     @Test
     public void test(){
         driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("span[data-test-id='name'] input")).sendKeys("Симонов Андрей");
         driver.findElement(By.cssSelector("span[data-test-id='phone'] input")).sendKeys("+79508556982");
         driver.findElement(By.className("checkbox__box")).click();
-        driver.findElement(By.className("button button_view_extra")).click();
+        driver.findElement(By.className("button_view_extra")).click();
         String text = driver.findElement(By.className("Success_successBlock__2L3Cw")).getText();
 
-        assertEquals("  Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.",text.trim());
+        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.",text.trim());
     }
 
 }
