@@ -1,3 +1,4 @@
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,11 +14,18 @@ public class CallbackTest {
 
     private WebDriver driver;
 
-    @BeforeAll
-    static void setUpAll(){
-        System.setProperty("webdriver.chrome.driver","driver/win/chromedriver.exe");
+    //  @BeforeAll
+   // static void setUpAll(){
+       // System.setProperty("webdriver.chrome.driver","C:\\automated testing Java\\CardOrder\\driver\\win\\chromedriver.exe");
+    //}
 
+
+    @BeforeAll
+    static void setUpAll() {
+       WebDriverManager.chromedriver().setup();
     }
+
+
     @BeforeEach
     void setUp(){
         ChromeOptions options = new ChromeOptions();
@@ -32,8 +40,6 @@ public class CallbackTest {
         driver.quit();
         driver = null;
     }
-
-
     @Test
     public void test(){
         driver.get("http://localhost:9999");
